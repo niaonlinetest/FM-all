@@ -6,26 +6,30 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
 
-   function success(entries) {
-    var i;
-    for (i=0; i<entries.length; i++) {
-        console.log(entries[i].name);
+function dwnld () {
+	    	
+var fileTransfer = new FileTransfer();
+var uri = encodeURI("http://bluesapphirecreations.info/design/d1/he-app/demo.zip");
+
+fileTransfer.download(
+    uri,
+    filePath,
+    function(entry) {
+        console.log("download complete: " + entry.fullPath);
+    },
+    function(error) {
+        console.log("download error source " + error.source);
+        console.log("download error target " + error.target);
+        console.log("upload error code" + error.code);
     }
+);
+
 }
-
-function fail(error) {
-    alert("Failed to list directory contents: " + error.code);
-}
-
-// Get a directory reader
-var directoryReader = dirEntry.createReader();
-
-// Get a list of all the entries in the directory
-directoryReader.readEntries(success,fail); 
 
     </script>
   </head>
   <body>
-  	page 2 go go
+  	<br><br>
+  <a href="#" onclick="dwnld();">download</a>
   </body>
 </html>
