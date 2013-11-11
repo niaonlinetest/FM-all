@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InAppBrowser.close Example</title>
+    <title>InAppBrowser.addEventListener Example</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova-2.4.0.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -13,16 +13,15 @@
     // Cordova is ready
     //
     function onDeviceReady() {
-         var ref = window.open('page2.html', '_blank', 'location=yes');
-         // close InAppBrowser after 5 seconds
-         setTimeout(function() {
-             ref.close();
-         }, 5000);
+         var ref = window.open('http://google.com', '_blank', 'location=yes');
+         ref.addEventListener('loadstart', function() { alert('start: ' + event.url); });
+         ref.addEventListener('loadstop', function() { alert('stop: ' + event.url); });
+         ref.addEventListener('exit', function() { alert(event.type); });
     }
 
     </script>
   </head>
   <body>
-  	go go go
+  	this is first page
   </body>
 </html>
