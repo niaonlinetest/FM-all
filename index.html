@@ -1,134 +1,112 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      .example {
-        padding: 10px;
-        border: 1px solid #CCC;
-      }
-      #example-list-fs ul {
-        padding-left: 0;
-      }
-      #example-list-fs li {
-        list-style: none;
-      }
-      #example-list-fs img {
-        vertical-align: middle;
-      }
-      button {
-        padding: 5px 8px;
-        cursor: pointer;
-        text-shadow: 1px 1px white;
-        font-weight: 700;
-        font-size: 10pt;
-      }
-      body {
-        font: 14px Arial;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="example-list-fs" class="example">
-      <button>Add some files</button> <button>List files</button> <button>Remove all files</button>
-      <ul id="example-list-fs-ul"></ul>
-    </div>
-    <script>
-      window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-      var fs = null;
-      
-      function errorHandler(e) {
-        var msg = '';
-        switch (e.code) {
-          case FileError.QUOTA_EXCEEDED_ERR:
-            msg = 'QUOTA_EXCEEDED_ERR';
-            break;
-          case FileError.NOT_FOUND_ERR:
-            msg = 'NOT_FOUND_ERR';
-            break;
-          case FileError.SECURITY_ERR:
-            msg = 'SECURITY_ERR';
-            break;
-          case FileError.INVALID_MODIFICATION_ERR:
-            msg = 'INVALID_MODIFICATION_ERR';
-            break;
-          case FileError.INVALID_STATE_ERR:
-            msg = 'INVALID_STATE_ERR';
-            break;
-          default:
-            msg = 'Unknown Error';
-            break;
-        };
-        document.querySelector('#example-list-fs-ul').innerHTML = 'Error: ' + msg;
-      }
-      
-      function initFS() {
-        window.requestFileSystem(window.TEMPORARY, 1024*1024, function(filesystem) {
-          fs = filesystem;
-        }, errorHandler);
-      }
-      
-      var buttons = document.querySelectorAll('#example-list-fs button');
-      var filelist = document.querySelector('#example-list-fs-ul');
-      
-      if (buttons.length >= 3) {
-        buttons[0].addEventListener('click', function(e) {
-          if (!fs) {
-            return;
-          }
-          fs.root.getFile('log.txt', {create: true}, null, errorHandler);
-          fs.root.getFile('song.mp3', {create: true}, null, errorHandler);
-          fs.root.getDirectory('mypictures', {create: true}, null, errorHandler);
-          filelist.innerHTML = 'Files created.';
-        }, false);
-      
-        buttons[1].addEventListener('click', function(e) {
-          if (!fs) {
-            return;
-          }
-      
-          var dirReader = fs.root.createReader();
-          dirReader.readEntries(function(entries) {
-            if (!entries.length) {
-              filelist.innerHTML = 'Filesystem is empty.';
-            } else {
-              filelist.innerHTML = '';
-            }
-      
-            var fragment = document.createDocumentFragment();
-            for (var i = 0, entry; entry = entries[i]; ++i) {
-              var img = entry.isDirectory ? '<img src="http://www.html5rocks.com/static/images/tutorials/icon-folder.gif">' :
-                                            '<img src="http://www.html5rocks.com/static/images/tutorials/icon-file.gif">';
-              var li = document.createElement('li');
-              li.innerHTML = [img, '<span>', entry.name, '</span>'].join('');
-              fragment.appendChild(li);
-            }
-            filelist.appendChild(fragment);
-          }, errorHandler);
-        }, false);
-      
-        buttons[2].addEventListener('click', function(e) {
-          if (!fs) {
-            return;
-          }
-      
-          var dirReader = fs.root.createReader();
-          dirReader.readEntries(function(entries) {
-            for (var i = 0, entry; entry = entries[i]; ++i) {
-              if (entry.isDirectory) {
-                entry.removeRecursively(function() {}, errorHandler);
-              } else {
-                entry.remove(function() {}, errorHandler);
-              }
-            }
-            filelist.innerHTML = 'Directory emptied.';
-          }, errorHandler);
-        }, false);
-      }
-      
-      // Initiate filesystem on page load.
-      if (window.requestFileSystem) {
-        initFS();
-      }
+  <title></title>
+ 
+<!-- Android
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+<meta charset="utf-8">-->
+ 
+<!-- iPad/iPhone specific css below, add after your main css >
+<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="/ipad.css" type="text/css" />
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="/iphone.css" type="text/css" />
+-->
+<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+<script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript">
+ 
+ 
+// If you want to prevent dragging, uncomment this section
+/*
+function preventBehavior(e) 
+{ 
+      e.preventDefault(); 
+    };
+document.addEventListener("touchmove", preventBehavior, false);
+*/
+ 
+/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+for more details -jm */
+/*
+function handleOpenURL(url)
+{
+// TODO: do something with the url passed in.
+}
+*/
+ 
+function onBodyLoad()
+{
+document.addEventListener("deviceready", onDeviceReady, false);
+}
+ 
+    function downloadFile(){
+        window.requestFileSystem(
+                     LocalFileSystem.PERSISTENT, 0, 
+                     function onFileSystemSuccess(fileSystem) {
+                     fileSystem.root.getFile(
+                                 "dummy.html", {create: true, exclusive: false}, 
+                                 function gotFileEntry(fileEntry){
+                                 var sPath = fileEntry.fullPath.replace("dummy.html","");
+                                 var fileTransfer = new FileTransfer();
+                                 fileEntry.remove();
+ 
+                                 fileTransfer.download(
+                                           "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
+                                           sPath + "theFile.pdf",
+                                           function(theFile) {
+                                           console.log("download complete: " + theFile.toURI());
+                                           showLink(theFile.toURI());
+                                           },
+                                           function(error) {
+                                           console.log("download error source " + error.source);
+                                           console.log("download error target " + error.target);
+                                           console.log("upload error code: " + error.code);
+                                           }
+                                           );
+                                 }, 
+                                 fail);
+                     }, 
+                     fail);
+ 
+    }
+ 
+    function showLink(url){
+        alert(url);
+        var divEl = document.getElementById("ready");
+        var aElem = document.createElement("a");
+        aElem.setAttribute("target", "_blank");
+        aElem.setAttribute("href", url);
+        aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+        divEl.appendChild(aElem);
+ 
+    }
+ 
+ 
+    function fail(evt) {
+        console.log(evt.target.error.code);
+    }
+ 
+/* When this function is called, PhoneGap has been initialized and is ready to roll */
+/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+for more details -jm */
+function onDeviceReady()
+{
+// do your thing!
+        downloadFile();
+}
+ 
     </script>
+  </head>
+  <body onload="onBodyLoad()">
+<h1>Hey, it's PhoneGap!</h1>
+<p>Don't know how to get started? Check out <em><a target="_blank" href="/http://www.phonegap.com/start">PhoneGap Start</a><em>
+</p>
+<br />
+    <p>
+        DOWNLOADING FILE...<br />
+        <span id="ready"></span>
+    </p>
   </body>
-</html>​
+</html>
