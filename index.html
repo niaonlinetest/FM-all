@@ -7,42 +7,45 @@
     <script type="text/javascript" charset="utf-8">
  
 function dwnld () {
-
-//var filePath;
-// function setFilePath() {
-//     if(detectAndroid()) {   
-//         filePath = "file:///android_asset/www/res/db/";
-//         //4 Android
-//     } else {
-//         filePath = "res//db//";
-//         //4 apache//iOS/desktop
-//     }
-// }
  
+// var fileTransfer = new FileTransfer();
+// var uri = encodeURI("http://bluesapphirecreations.info/design/d1/he-app/demo.zip");
+// var filePath = "file:///";
+
+
+// fileTransfer.download(
+//     uri,
+//     filePath,
+//     function(entry) {
+//         console.log("download complete: " + entry.fullPath);
+//     },
+//     function(error) {
+//         console.log("download error source " + error.source);
+//         console.log("download error target " + error.target);
+//         console.log("upload error code" + error.code);
+//     },
+//     false,
+//     {
+//         headers: {
+//             "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+//         }
+//     }
+// );
 
 var fileTransfer = new FileTransfer();
-var uri = encodeURI("http://bluesapphirecreations.info/design/d1/he-app/demo.zip");
-var filePath = "file:///";
+   var url ="http://www.ranafrog.org.au/f006.jpg";
+   var folderpath=persistent_root.fullPath+"frog.jpg"; //The path is added here.
+   var onSuccess= function(entry){
+   console.log("download complete: " + entry.fullPath);
+};
 
+var onError=function(error) {
+    console.log("download error source " + error.source);
+    console.log("download error target " + error.target);
+    console.log("upload error code " + error.code);
+};
 
-fileTransfer.download(
-    uri,
-    filePath,
-    function(entry) {
-        console.log("download complete: " + entry.fullPath);
-    },
-    function(error) {
-        console.log("download error source " + error.source);
-        console.log("download error target " + error.target);
-        console.log("upload error code" + error.code);
-    },
-    false,
-    {
-        headers: {
-            "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-        }
-    }
-);
+fileTransfer.download(url,folderpath,onSuccess,onError);
 
 };
     </script>
