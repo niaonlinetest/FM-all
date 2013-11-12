@@ -5,61 +5,22 @@
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-
-function dwnld () {
-	    	
-var fileTransfer = new FileTransfer();
-var uri = encodeURI("http://bluesapphirecreations.info/design/d1/he-app/demo.zip");
-
-fileTransfer.download(
-    uri,
-    filePath,
-    function(entry) {
-        console.log("download complete: " + entry.fullPath);
-    },
-    function(error) {
-        console.log("download error source " + error.source);
-        console.log("download error target " + error.target);
-        console.log("upload error code" + error.code);
-    }
-);
-
+ 
+function success(parent) {
+    console.log("Parent Name: " + parent.name);
 }
 
-   document.addEventListener("deviceready", onDeviceReady, false);
+function fail(error) {
+    alert("Unable to create new directory: " + error.code);
+}
 
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        // Empty
-    }
-
-    // Show a custom alert
-    //
-    function showAlert() {
-        navigator.notification.alert(
-            'You are the winner!',  // message
-            'Game Over',            // title
-            'Done'                  // buttonName
-        );
-    }
-
-    // Beep three times
-    //
-    function playBeep() {
-        navigator.notification.beep(3);
-    }
-
-    // Vibrate for 2 seconds
-    //
-    function vibrate() {
-        navigator.notification.vibrate(2000);
-    }
+// Retrieve an existing directory, or create it if it does not already exist
+entry.getDirectory("newDir", {create: true, exclusive: false}, success, fail);
 
     </script>
   </head>
   <body>
   	<br><br>
-beep to do
+<a href="http://bluesapphirecreations.info/design/d1/he-app/demo.zip">downlaod</a>
   </body>
 </html>
