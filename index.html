@@ -18,10 +18,12 @@ function dwnld () {
 //         //4 apache//iOS/desktop
 //     }
 // }
-  
-  var fileTransfer = new FileTransfer();
+ 
+
+var fileTransfer = new FileTransfer();
 var uri = encodeURI("http://bluesapphirecreations.info/design/d1/he-app/demo.zip");
 var filePath = "file:///";
+
 
 fileTransfer.download(
     uri,
@@ -33,9 +35,14 @@ fileTransfer.download(
         console.log("download error source " + error.source);
         console.log("download error target " + error.target);
         console.log("upload error code" + error.code);
+    },
+    false,
+    {
+        headers: {
+            "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+        }
     }
 );
-}
     </script>
   </head>
   <body>
