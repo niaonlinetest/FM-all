@@ -34,7 +34,7 @@ function dwnld () {
 
 var fileTransfer = new FileTransfer();
    var url ="http://www.ranafrog.org.au/f006.jpg";
-   var folderpath=persistent_root.fullPath+"frog.jpg"; //The path is added here.
+   var folderpath= fullPath+"frog.jpg"; //The path is added here.
    var onSuccess= function(entry){
    console.log("download complete: " + entry.fullPath);
 };
