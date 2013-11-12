@@ -8,19 +8,20 @@
  
 function dwnld () {
 
-var filePath;
-function setFilePath() {
-    if(detectAndroid()) {   
-        filePath = "file:///android_asset/www/res/db/";
-        //4 Android
-    } else {
-        filePath = "res//db//";
-        //4 apache//iOS/desktop
-    }
-}
+//var filePath;
+// function setFilePath() {
+//     if(detectAndroid()) {   
+//         filePath = "file:///android_asset/www/res/db/";
+//         //4 Android
+//     } else {
+//         filePath = "res//db//";
+//         //4 apache//iOS/desktop
+//     }
+// }
   
   var fileTransfer = new FileTransfer();
 var uri = encodeURI("http://bluesapphirecreations.info/design/d1/he-app/demo.zip");
+var filePath = "file:///android_asset/www/";
 
 fileTransfer.download(
     uri,
