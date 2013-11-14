@@ -55,7 +55,9 @@ function dwnld () {
 
 var fileTransfer = new FileTransfer();
    var url ="http://www.ranafrog.org.au/f006.jpg";
+   console.log('yaha tk thik hai');
    var folderpath= fileSystem.root.fullPath; //The path is added here.
+    console.log('yaha tk nhi');
    var onSuccess= function(entry){
    console.log("download complete: " + entry.fullPath);
 };
