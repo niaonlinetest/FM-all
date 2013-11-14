@@ -86,7 +86,14 @@ function onGetDirectoryFail(error) {
         divEl.appendChild(aElem);
         navigator.notification.beep(1);
         alert("start extracting");
-        extractFile(url);
+       
+       function extractFile(fileName)
+{
+  alert(fileName);
+  var ZipClient = new ExtractZipFilePlugin();
+  ZipClient.extractFile( sPath + fileName,win,fail,'ExtractZipFilePlugin');
+}
+  extractFile(url);
  
     }
  
