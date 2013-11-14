@@ -23,7 +23,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 // create dir-----------------------------------------------------------
 
-navigator.notification.beep();
+
 
 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSuccess, null); 
 
@@ -76,6 +76,7 @@ function onGetDirectoryFail(error) {
     function showLink(url){
      
         alert(url);
+        navigator.notification.beep(1);
         var divEl = document.getElementById("ready");
         var aElem = document.createElement("a");
         aElem.setAttribute("target", "_blank");
