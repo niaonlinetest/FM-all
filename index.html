@@ -71,6 +71,7 @@ function onGetDirectoryFail(error) {
     }
  
     function showLink(url){
+      navigator.notification.beep();
         alert(url);
         var divEl = document.getElementById("ready");
         var aElem = document.createElement("a");
