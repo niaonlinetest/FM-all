@@ -4,7 +4,7 @@
     <title>InAppBrowser.addEventListener Example</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    
+
 <script type="text/javascript" charset="utf-8"> 
  document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -31,11 +31,28 @@
   
   var fileName = new Date().getTime() + ".jpg";
   ft = new FileTransfer();
+
   ft.download(
-     console.log('download start');
       url,
       window.appRootDir.fullPath + "/" + fileName,
-       console.log('url k bad download me');
+
+      function(entry) {
+          console.log("download complete: " + entry.fullPath);
+          //success(entry.fullPath);
+      },
+
+      function(error) {
+          console.log("download error source " + error.source);
+          console.log("download error target " + error.target);
+          console.log("upload error code" + error.code);
+        //  err(error);
+      }
+
+  );
+  ft.download(
+    
+      url,
+      window.appRootDir.fullPath + "/" + fileName, 
       function(entry) {
           console.log("download complete: " + entry.fullPath);
           //success(entry.fullPath);
