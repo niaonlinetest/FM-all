@@ -6,8 +6,29 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
  
-function dwnld () {
  
+ 
+
+function dwnld () {
+ document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+        console.log("device is ready");
+        window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    }
+
+    function fail() {
+        console.log("failed to get filesystem");
+    }
+
+    function gotFS(fileSystem) {
+        console.log("got filesystem");
+
+            // save the file system for later access
+        console.log(fileSystem.root.fullPath);
+        //window.rootFS = fileSystem.root;
+    }
 // var fileTransfer = new FileTransfer();
 // var uri = encodeURI("http://bluesapphirecreations.info/design/d1/he-app/demo.zip");
 // var filePath = "file:///";
@@ -34,7 +55,7 @@ function dwnld () {
 
 var fileTransfer = new FileTransfer();
    var url ="http://www.ranafrog.org.au/f006.jpg";
-   var folderpath= fullPath+"frog.jpg"; //The path is added here.
+   var folderpath= fileSystem.root.fullPath; //The path is added here.
    var onSuccess= function(entry){
    console.log("download complete: " + entry.fullPath);
 };
