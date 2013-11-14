@@ -75,11 +75,13 @@ function dwnld () {
 function downloadImage(url, success, err){
   console.log('download image ' + url);
   
-  var fileName = new Date().getTime() + ".png";
+  var fileName = new Date().getTime() + ".jpg";
   ft = new FileTransfer();
   ft.download(
+     console.log('download start');
       url,
       window.appRootDir.fullPath + "/" + fileName,
+       console.log('url k bad download me');
       function(entry) {
           console.log("download complete: " + entry.fullPath);
           success(entry.fullPath);
