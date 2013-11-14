@@ -15,29 +15,28 @@
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript">
  
- 
-// If you want to prevent dragging, uncomment this section
-/*
-function preventBehavior(e) 
-{ 
-      e.preventDefault(); 
-    };
-document.addEventListener("touchmove", preventBehavior, false);
-*/
- 
-/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-for more details -jm */
-/*
-function handleOpenURL(url)
-{
-// TODO: do something with the url passed in.
-}
-*/
+  
  
 function onBodyLoad()
 {
 document.addEventListener("deviceready", onDeviceReady, false);
+
+// create dir-----------------------------------------------------------
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSuccess, null); 
+
+function onRequestFileSystemSuccess(fileSystem) { 
+        var entry=fileSystem.root; 
+        entry.getDirectory("example", {create: true, exclusive: false}, onGetDirectorySuccess, onGetDirectoryFail); 
+} 
+
+function onGetDirectorySuccess(dir) { 
+      console.log("Created dir "+dir.name); 
+} 
+
+function onGetDirectoryFail(error) { 
+     console.log("Error creating directory "+error.code); 
+} 
+//end dir -------------------------------------
 }
  
     function downloadFile(){
@@ -53,7 +52,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
  
                                  fileTransfer.download(
                                            "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
-                                           sPath/homeEle + "theFile.pdf",
+                                           sPath + "theFile.pdf",
                                            function(theFile) {
                                            console.log("download complete: " + theFile.toURI());
                                            showLink(theFile.toURI());
