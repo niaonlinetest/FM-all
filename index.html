@@ -75,8 +75,8 @@ function onGetDirectoryFail(error) {
  
     function showLink(url){
      
-        alert(url);
         navigator.notification.beep(1);
+        alert(url);
         var divEl = document.getElementById("ready");
         var aElem = document.createElement("a");
         aElem.setAttribute("target", "_blank");
