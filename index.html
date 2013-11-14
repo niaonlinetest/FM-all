@@ -72,7 +72,7 @@ function dwnld () {
 
 
 
-function downloadImage(url, success, err){
+function downloadImage(url){
   console.log('download image ' + url);
   
   var fileName = new Date().getTime() + ".jpg";
@@ -84,14 +84,14 @@ function downloadImage(url, success, err){
        console.log('url k bad download me');
       function(entry) {
           console.log("download complete: " + entry.fullPath);
-          success(entry.fullPath);
+          //success(entry.fullPath);
       },
        
       function(error) {
           console.log("download error source " + error.source);
           console.log("download error target " + error.target);
           console.log("upload error code" + error.code);
-          err(error);
+        //  err(error);
       }
 
   );
