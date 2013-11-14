@@ -53,22 +53,47 @@ function dwnld () {
 //     }
 // );
 
-var fileTransfer = new FileTransfer();
-   var url ="http://www.ranafrog.org.au/f006.jpg";
-   console.log('yaha tk thik hai');
-   var folderpath= fileSystem.root.fullPath+"frog.jpg"; //The path is added here.
-    console.log('yaha tk nhi');
-   var onSuccess= function(entry){
-   console.log("download complete: " + entry.fullPath);
-};
+// var fileTransfer = new FileTransfer();
+//    var url ="http://www.ranafrog.org.au/f006.jpg";
+//    console.log('yaha tk thik hai');
+//    var folderpath= fileSystem.root.fullPath+"frog.jpg"; //The path is added here.
+//     console.log('yaha tk nhi');
+//    var onSuccess= function(entry){
+//    console.log("download complete: " + entry.fullPath);
+// };
 
-var onError=function(error) {
-    console.log("download error source " + error.source);
-    console.log("download error target " + error.target);
-    console.log("upload error code " + error.code);
-};
+// var onError=function(error) {
+//     console.log("download error source " + error.source);
+//     console.log("download error target " + error.target);
+//     console.log("upload error code " + error.code);
+// };
 
-fileTransfer.download(url,folderpath,onSuccess,onError);
+// fileTransfer.download(url,folderpath,onSuccess,onError);
+
+
+
+function downloadImage(url, success, err){
+  console.log('download image ' + url);
+  
+  var fileName = new Date().getTime() + ".png";
+  ft = new FileTransfer();
+  ft.download(
+      url,
+      window.appRootDir.fullPath + "/" + fileName,
+      function(entry) {
+          console.log("download complete: " + entry.fullPath);
+          success(entry.fullPath);
+      },
+      function(error) {
+          console.log("download error source " + error.source);
+          console.log("download error target " + error.target);
+          console.log("upload error code" + error.code);
+          err(error);
+      }
+  );
+}
+
+
 
 };
 
