@@ -84,16 +84,23 @@ function downloadImage(url, success, err){
           console.log("download complete: " + entry.fullPath);
           success(entry.fullPath);
       },
+      function(successdone) {
+          console.log("download success source "  );
+          console.log("download success target " );
+          console.log("upload success code" );
+          success(successdone);
+      },
       function(error) {
           console.log("download error source " + error.source);
           console.log("download error target " + error.target);
           console.log("upload error code" + error.code);
           err(error);
       }
+
   );
 }
 
-  
+
 };
 downloadImage("http://www.ranafrog.org.au/f006.jpg", success, err);
  }
