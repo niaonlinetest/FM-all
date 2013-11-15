@@ -54,12 +54,7 @@ function onGetDirectoryFail(error) {
                                  var sPath = fileEntry.fullPath.replace("dummy.html","");
                                  var fileTransfer = new FileTransfer();
                                  fileEntry.remove();
-                                  function opnSite () {
-    
-    var mainUrl =  sPath + "/example/site2/index.html" ;
-      location.href = mainUrl;
 
-      }
                                   
                                  fileTransfer.download(
                                            "http://bluesapphirecreations.info/design/d1/he-app/1/site.zip",
@@ -80,9 +75,19 @@ function onGetDirectoryFail(error) {
                      fail);
  
     }
- 
+   // function opnSite () {
+    
+   //  var mainUrl =  sPath + "/example/site2/index.html" ;
+   //    location.href = mainUrl;
+
+   //    }
     function showLink(url){
-      
+       
+    
+    var mainUrl =  sPath + "/example/site2/index.html" ;
+      $(".open").addClass("href", mainUrl);
+
+     
 
         //navigator.notification.beep(1);
         alert(url);
