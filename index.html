@@ -75,8 +75,8 @@ function onGetDirectoryFail(error) {
     }
  
     function showLink(url){
-     
-        navigator.notification.beep(1);
+     console.log('sPath + "/example/site2.html');
+        //navigator.notification.beep(1);
         alert(url);
         var divEl = document.getElementById("ready");
         var aElem = document.createElement("a");
@@ -84,8 +84,9 @@ function onGetDirectoryFail(error) {
         aElem.setAttribute("href", sPath + "/example/site2.html");
         aElem.appendChild(document.createTextNode("Ready! Click To Open."))
         divEl.appendChild(aElem);
-        navigator.notification.beep(1);
+       // navigator.notification.beep(1);
         alert("start extracting");
+
        
        function extractFile(fileName)
 {
