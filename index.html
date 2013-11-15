@@ -76,15 +76,15 @@ function onGetDirectoryFail(error) {
  
     function showLink(url){
      
-        navigator.notification.beep(1);
+        //navigator.notification.beep(1);
         alert(url);
         var divEl = document.getElementById("ready");
         var aElem = document.createElement("a");
         aElem.setAttribute("target", "_blank");
-        aElem.setAttribute("href", url);
+        aElem.setAttribute("href", "sPath +  '/example/index.html'");
         aElem.appendChild(document.createTextNode("Ready! Click To Open."))
         divEl.appendChild(aElem);
-        navigator.notification.beep(1);
+        //navigator.notification.beep(1);
         alert("start extracting");
        
        function extractFile(fileName)
