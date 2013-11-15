@@ -78,31 +78,29 @@ function onGetDirectoryFail(error) {
 
     // -----------------------
 
-     function myPath(){
-        window.requestFileSystem(
-                     LocalFileSystem.PERSISTENT, 0, 
-                     function onFileSystemSuccess(fileSystem) {
-                     fileSystem.root.getFile(
-                                 "dummy2.html", {create: true, exclusive: false}, 
-                                 function gotFileEntry(fileEntry){
-                                 var sPath = fileEntry.fullPath.replace("dummy2 .html","");
-                                 
-                                  
-                                  return sPath;
-                                   
-                                 
-                                 }, 
-                                 fail);
-                     }, 
-                     fail);
  
-    }
-   function opnSite () {
+
+var fileSystem, basePath;
+
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, opnSite, function(error) { 
+    notificationservice.log('Failed to get local filesystem: ' + error.code); 
+});
+
+function opnSite(fs) {
+    fileSystem = fs;
+    basePath = fileSystem.root.fullPath;
+    console.log(basePath);
+    console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
+    // var directoryEntry = new DirectoryEntry('', basePath);
+    // readDirectory(directoryEntry);
+}
+
+   // function opnSite () {
     
-    var mainUrl =  myPath;
-     // location.href = mainUrl;
-   $(".open").attr("href", mainUrl);
-      }
+   //  var mainUrl =  myPath;
+   //   // location.href = mainUrl;
+   // $(".open").attr("href", mainUrl);
+   //    }
     function showLink(url){
        
     
