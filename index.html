@@ -53,9 +53,8 @@ function onGetDirectoryFail(error) {
                                  function gotFileEntry(fileEntry){
                                  var sPath = fileEntry.fullPath.replace("dummy.html","");
                                  var fileTransfer = new FileTransfer();
-                                 fileEntry.remove();
+                                 fileEntry.remove(); 
 
-                                   
                                  fileTransfer.download(
                                            "http://bluesapphirecreations.info/design/d1/he-app/1/site.zip",
                                            sPath + "/example/" + "site.zip",
@@ -86,9 +85,9 @@ function onGetDirectoryFail(error) {
                      fileSystem.root.getFile(
                                  "dummy2.html", {create: true, exclusive: false}, 
                                  function gotFileEntry(fileEntry){
-                                 var sPath = fileEntry.fullPath.replace("dummy2.html","");
-                                 var fileTransfer = new FileTransfer();
-                                 fileEntry.remove();
+                                 var sPath = fileEntry.fullPath.replace("dummy2 .html","");
+                                 
+                                  
                                   return sPath;
                                    
                                  
@@ -164,5 +163,6 @@ function onDeviceReady()
         <span id="ready"></span>
         <a href="#" onclick="opnSite();" class="open" style="display: none;">open</a>
     </p>
+  
   </body>
 </html>
