@@ -59,10 +59,8 @@ function onGetDirectoryFail(error) {
                                            "http://bluesapphirecreations.info/design/d1/he-app/1/site.zip",
                                            sPath + "/example/" + "site.zip",
 
-                                           function(theFile) {
-                                           console.log("download complete: " + theFile.toURL());
-                                           showLink(theFile.toURL());
-                                           opnSite(sPath);
+                                           function(theFile) {  
+                                           showLink(theFile.toURL()); 
                                            },
                                            function(error) {
                                            console.log("download error source " + error.source);
@@ -76,8 +74,9 @@ function onGetDirectoryFail(error) {
                      fail);
  
     }
-  function opnSite (url) {
-var mainUrl =  sPath + "/example/site2/index.html" ;
+  function opnSite () {
+    var sPath = fileEntry.fullPath.replace("dummy.html","");
+    var mainUrl =  sPath + "/example/site2/index.html" ;
       location.href = mainUrl;
 
       }
