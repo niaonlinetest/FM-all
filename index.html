@@ -50,7 +50,7 @@ function onGetDirectoryFail(error) {
                      fileSystem.root.getFile(
                                  "dummy.html", {create: true, exclusive: false}, 
                                  function gotFileEntry(fileEntry){
-                                 var sPath = fileEntry.fullPath.replace("dummy.html","");
+                                 var sPath = fileEntry.fullPath/example.replace("dummy.html","");
                                  var fileTransfer = new FileTransfer();
                                  fileEntry.remove();
  
@@ -110,6 +110,7 @@ function onDeviceReady()
 {
 // do your thing!
         downloadFile();
+
          
 }
  
@@ -117,7 +118,7 @@ function onDeviceReady()
   </head>
   <body onload="onBodyLoad()">
 <h1>Hey, it's PhoneGap!</h1>
-<p>Don't know how to get started? Check out <em><a target="_blank" href="/http://www.phonegap.com/start">PhoneGap Start</a><em>
+<p>Don't know how to get started? Check out <em><a target="_blank" href="/http://www.phonegap.com/start">PhoneGap Start</a></em>
 </p>
 <br />
     <p>
