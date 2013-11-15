@@ -55,7 +55,7 @@ function onGetDirectoryFail(error) {
                                  var fileTransfer = new FileTransfer();
                                  fileEntry.remove();
 
-                                  
+                                   
                                  fileTransfer.download(
                                            "http://bluesapphirecreations.info/design/d1/he-app/1/site.zip",
                                            sPath + "/example/" + "site.zip",
@@ -75,18 +75,51 @@ function onGetDirectoryFail(error) {
                      fail);
  
     }
-   // function opnSite () {
-    
-   //  var mainUrl =  sPath + "/example/site2/index.html" ;
-   //    location.href = mainUrl;
 
-   //    }
+
+    // -----------------------
+
+     function myPath(){
+        window.requestFileSystem(
+                     LocalFileSystem.PERSISTENT, 0, 
+                     function onFileSystemSuccess(fileSystem) {
+                     fileSystem.root.getFile(
+                                 "dummy.html", {create: true, exclusive: false}, 
+                                 function gotFileEntry(fileEntry){
+                                 var sPath = fileEntry.fullPath.replace("dummy.html","");
+                                 var fileTransfer = new FileTransfer();
+                                 fileEntry.remove();
+                                  return sPath;
+                                   
+                                 fileTransfer.download(
+                                           "http://bluesapphirecreations.info/design/d1/he-app/1/site.zip",
+                                           sPath + "/example/" + "site.zip",
+
+                                           function(theFile) {  
+                                           showLink(theFile.toURL()); 
+                                           },
+                                           function(error) {
+                                           console.log("download error source " + error.source);
+                                           console.log("download error target " + error.target);
+                                           console.log("upload error code: " + error.code);
+                                           }
+                                           );
+                                 }, 
+                                 fail);
+                     }, 
+                     fail);
+ 
+    }
+   function opnSite () {
+    
+    var mainUrl =  myPath;
+     // location.href = mainUrl;
+   $(".open").attr("href", mainUrl);
+      }
     function showLink(url){
        
     
-       var mainUrl =  sPath + "/example/site2/index.html" ;
-      $(".open").attr("href", mainUrl);
-
+       
      
 
         //navigator.notification.beep(1);
@@ -97,7 +130,7 @@ function onGetDirectoryFail(error) {
         //var divEl = document.getElementById("ready");
        // var aElem = document.createElement("a");
         //aElem.setAttribute("target", "_blank");
-       // aElem.setAttribute("href", url );
+        aElem.setAttribute("href", url );
        // aElem.appendChild(document.createTextNode("Ready! Click To Open."))
        // divEl.appendChild(aElem);
        // navigator.notification.beep(1);
