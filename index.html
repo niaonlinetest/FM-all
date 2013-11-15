@@ -50,14 +50,13 @@ function onGetDirectoryFail(error) {
                      fileSystem.root.getFile(
                                  "dummy.html", {create: true, exclusive: false}, 
                                  function gotFileEntry(fileEntry){
-                                 var fullPath = fullPath + "/example"
                                  var sPath = fileEntry.fullPath.replace("dummy.html","");
                                  var fileTransfer = new FileTransfer();
                                  fileEntry.remove();
  
                                  fileTransfer.download(
                                            "http://bluesapphirecreations.info/design/d1/he-app/1/site.zip",
-                                           sPath + "site.zip",
+                                           sPath + "/example/" + "site.zip",
                                            function(theFile) {
                                            console.log("download complete: " + theFile.toURL());
                                            showLink(theFile.toURL());
