@@ -80,27 +80,21 @@ function onGetDirectoryFail(error) {
 
  
 
-var fileSystem, basePath;
+ 
 
-window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, opnSite, function(error) { 
-    notificationservice.log('Failed to get local filesystem: ' + error.code); 
-});
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+  function onFileSystemSuccess(fileSystem) {
+ 
+var mySiteUrl = fileSystem.root.fullPath +  "/example/site2/site.html"
+ 
+ var divOpen = document.getElementById("open");
+ divOpen.setAttribute("href", mySiteUrl );
 
-function opnSite(fs) {
-    fileSystem = fs;
-    basePath = fileSystem.root.fullPath;
-    console.log(basePath);
-    console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
-    // var directoryEntry = new DirectoryEntry('', basePath);
-    // readDirectory(directoryEntry);
-}
+  }
+   
+   );
 
-   // function opnSite () {
-    
-   //  var mainUrl =  myPath;
-   //   // location.href = mainUrl;
-   // $(".open").attr("href", mainUrl);
-   //    }
+  
     function showLink(url){
        
     
@@ -115,7 +109,7 @@ function opnSite(fs) {
         //var divEl = document.getElementById("ready");
        // var aElem = document.createElement("a");
         //aElem.setAttribute("target", "_blank");
-        aElem.setAttribute("href", url );
+       // aElem.setAttribute("href", url );
        // aElem.appendChild(document.createTextNode("Ready! Click To Open."))
        // divEl.appendChild(aElem);
        // navigator.notification.beep(1);
@@ -159,7 +153,7 @@ function onDeviceReady()
     <p>
         DOWNLOADING FILE...<br />
         <span id="ready"></span>
-        <a href="#" onclick="opnSite();" class="open" style="display: none;">open</a>
+        <a href="#"   id="open" style="display: none;">open</a>
     </p>
   
   </body>
