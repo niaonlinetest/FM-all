@@ -50,7 +50,8 @@ function onGetDirectoryFail(error) {
                      fileSystem.root.getFile(
                                  "dummy.html", {create: true, exclusive: false}, 
                                  function gotFileEntry(fileEntry){
-                                 var sPath = fileEntry.fullPath/example.replace("dummy.html","");
+                                 var fullPath = fullPath + "/example"
+                                 var sPath = fileEntry.fullPath.replace("dummy.html","");
                                  var fileTransfer = new FileTransfer();
                                  fileEntry.remove();
  
