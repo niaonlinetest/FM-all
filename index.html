@@ -74,9 +74,14 @@ function onGetDirectoryFail(error) {
                      fail);
  
     }
- 
+  function opnSite () {
+var mainUrl =  sPath + "/example/site2/index.html" ;
+      location.href = mainUrl;
+
+      }
     function showLink(url){
       
+
         //navigator.notification.beep(1);
         alert(url);
         $(".open").show();
@@ -129,7 +134,7 @@ function onDeviceReady()
     <p>
         DOWNLOADING FILE...<br />
         <span id="ready"></span>
-        <a href="file:///storage/sdcard0/example/site2/index.html" class="open" style="display: none;">open</a>
+        <a href="#" onclick="opnSite();" class="open" style="display: none;">open</a>
     </p>
   </body>
 </html>
