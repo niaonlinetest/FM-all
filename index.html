@@ -12,6 +12,7 @@
 <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="/iphone.css" type="text/css" />
 -->
 <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+  <script src="jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8" src="ZipPlugin.js"></script>
 <script type="text/javascript">
@@ -75,15 +76,18 @@ function onGetDirectoryFail(error) {
     }
  
     function showLink(url){
-     console.log('sPath + "/example/site2.html');
+      
         //navigator.notification.beep(1);
         alert(url);
-        var divEl = document.getElementById("ready");
-        var aElem = document.createElement("a");
-        aElem.setAttribute("target", "_blank");
-        aElem.setAttribute("href", sPath + "/example/site2.html");
-        aElem.appendChild(document.createTextNode("Ready! Click To Open."))
-        divEl.appendChild(aElem);
+        $(".open").show();
+        $(".open").attr("open")
+
+        //var divEl = document.getElementById("ready");
+       // var aElem = document.createElement("a");
+        //aElem.setAttribute("target", "_blank");
+       // aElem.setAttribute("href", url );
+       // aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+       // divEl.appendChild(aElem);
        // navigator.notification.beep(1);
         alert("start extracting");
 
@@ -125,6 +129,7 @@ function onDeviceReady()
     <p>
         DOWNLOADING FILE...<br />
         <span id="ready"></span>
+        <a href="#" class="open" style="display: none;">open</a>
     </p>
   </body>
 </html>
