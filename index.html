@@ -81,7 +81,7 @@ function onGetDirectoryFail(error) {
         var divEl = document.getElementById("ready");
         var aElem = document.createElement("a");
         aElem.setAttribute("target", "_blank");
-        aElem.setAttribute("href", "sPath +  '/example/index.html'");
+        aElem.setAttribute("href",  sPath + "/example/index.html");
         aElem.appendChild(document.createTextNode("Ready! Click To Open."))
         divEl.appendChild(aElem);
         //navigator.notification.beep(1);
