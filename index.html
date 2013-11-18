@@ -70,7 +70,11 @@
         console.log("download error source " + error.source);
         console.log("download error target " + error.target);
         console.log("upload error code: " + error.code);
-      });
+      },
+        console.log('start extracting now vip');
+        extractFile(sPath + "/example/" + "site.zip");
+        console.log('end extracting now vip');
+      );
     }, fail);
   }, fail);
 
@@ -81,14 +85,14 @@
   //alert(url);
   $("#open").show();
 
-  alert("start extracting");
+  //alert("start extracting");
 
 
-  function extractFile(fileName) {
-    alert(fileName);
-    var ZipClient = new ExtractZipFilePlugin();
-    ZipClient.extractFile(sPath + fileName, win, fail, 'ExtractZipFilePlugin');
-  }
+  // function extractFile(fileName) {
+  //   alert(fileName);
+  //   var ZipClient = new ExtractZipFilePlugin();
+  //   ZipClient.extractFile(fileName, win, fail, 'ExtractZipFilePlugin');
+  // }
   console.log(url + "ab check kro");
   extractFile(url);
 
