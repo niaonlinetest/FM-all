@@ -82,8 +82,8 @@ function onGetDirectoryFail(error) {
 
  
 
-window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-  function onFileSystemSuccess(fileSystem) {
+ window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, showOpenLink, null );
+  function showOpenLink(fileSystem) {
  
 var mySiteUrl = fileSystem.root.fullPath +  "/example/site2/index.html"
  
@@ -92,12 +92,10 @@ var mySiteUrl = fileSystem.root.fullPath +  "/example/site2/index.html"
 
   }
    
-   );
+    
 
   
     function showLink(url){
-       
-    
        
      
 
