@@ -32,6 +32,10 @@ window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSucce
 function onRequestFileSystemSuccess(fileSystem) { 
         var entry=fileSystem.root; 
         entry.getDirectory("example", {create: true, exclusive: false}, onGetDirectorySuccess, onGetDirectoryFail); 
+        var mySiteUrl= entry +  "/example/site2/index.html"
+        var divOpen = document.getElementById("open");
+       divOpen.setAttribute("href", mySiteUrl );
+
 } 
 
 function onGetDirectorySuccess(dir) { 
@@ -82,15 +86,15 @@ function onGetDirectoryFail(error) {
 
  
 
- window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, showOpenLink, null );
-  function showOpenLink(fileSystem) {
- var entry=fileSystem.root;
-var mySiteUrl = entry +  "/example/site2/index.html"
+//  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, showOpenLink, null );
+//   function showOpenLink(fileSystem) {
+//  var entry=fileSystem.root;
+// var mySiteUrl = entry +  "/example/site2/index.html"
  
- var divOpen = document.getElementById("open");
- divOpen.setAttribute("href", mySiteUrl );
+//  var divOpen = document.getElementById("open");
+//  divOpen.setAttribute("href", mySiteUrl );
 
-  }
+//   }
    
     
 
