@@ -85,7 +85,7 @@ function onGetDirectoryFail(error) {
  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, showOpenLink, null );
   function showOpenLink(fileSystem) {
  var entry=fileSystem.root;
-var mySiteUrl = fileSystem.root.fullPath +  "/example/site2/index.html"
+var mySiteUrl = entry +  "/example/site2/index.html"
  
  var divOpen = document.getElementById("open");
  divOpen.setAttribute("href", mySiteUrl );
