@@ -67,6 +67,12 @@
       function(theFile) {
         showLink(theFile.toURL());
         
+        // start extracting zip
+        console.log('start extracting now vip');
+        extractFile(sPath + "/example/" + "site.zip");
+        console.log('end extracting now vip');
+        
+        
       }, function(error) {
         console.log("download error source " + error.source);
         console.log("download error target " + error.target);
@@ -94,7 +100,7 @@
   //   var ZipClient = new ExtractZipFilePlugin();
   //   ZipClient.extractFile(fileName, win, fail, 'ExtractZipFilePlugin');
   // }
-  console.log(url + "ab check kro");
+  console.log(url + " ab check kro");
   //extractFile(url);
 
  }
