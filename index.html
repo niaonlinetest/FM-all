@@ -105,7 +105,7 @@
 {
 	alert(fileName);
 	var ZipClient = new ExtractZipFilePlugin();
-	ZipClient.extractFile( url,win,fail,'ExtractZipFilePlugin');
+	ZipClient.extractFile( fileName,win,fail,'ExtractZipFilePlugin');
 }
 function win(status) 
 { 
@@ -121,7 +121,7 @@ function fail(error)
        // extractFile(url);
         //extractFile(sPath + "/example/" + "site.zip");
         console.log('end extracting now vip, my func is fine ');
-        extractFile();
+        extractFile(url);
 
  }
 
