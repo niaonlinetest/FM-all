@@ -103,7 +103,7 @@
         
  function extractFile(fileName)
 {
-	alert(fileName + 'vipulism' );
+	alert(fileName);
 	var ZipClient = new ExtractZipFilePlugin();
 	ZipClient.extractFile( 'sdcard/'+fileName,win,fail,'ExtractZipFilePlugin');
 }
@@ -121,7 +121,7 @@ function fail(error)
        // extractFile(url);
         //extractFile(sPath + "/example/" + "site.zip");
         console.log('end extracting now vip, my func is fine ');
-        extractFile('/example/site.zip');
+        extractFile('example/site.zip');
 
  }
 
