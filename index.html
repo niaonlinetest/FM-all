@@ -67,11 +67,6 @@
       function(theFile) {
         showLink(theFile.toURL());
         
-        // start extracting zip
-        console.log('start extracting now vip');
-        extractFile(sPath + "/example/" + "site.zip");
-        console.log('end extracting now vip');
-        
         
       }, function(error) {
         console.log("download error source " + error.source);
@@ -102,6 +97,12 @@
   // }
   console.log(url + " ab check kro");
   //extractFile(url);
+  
+  // start extracting zip
+        console.log('start extracting now vip');
+        extractFile(url);
+        //extractFile(sPath + "/example/" + "site.zip");
+        console.log('end extracting now vip');
 
  }
 
