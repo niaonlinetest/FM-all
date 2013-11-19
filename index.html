@@ -66,6 +66,7 @@
 
       function(theFile) {
         showLink(theFile.toURL());
+        
       }, function(error) {
         console.log("download error source " + error.source);
         console.log("download error target " + error.target);
@@ -130,7 +131,7 @@ for more details -jm */
     <br />
     <p>
       DOWNLOADING FILE...
-      <!-- <input type="button" value="start"    /> -->
+      <input type="button" value="start" onclick="onBodyLoad()"   /> 
       <br />
       <span id="ready">
       </span>
